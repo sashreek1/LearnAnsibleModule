@@ -1,0 +1,22 @@
+---
+- name: Test hello module
+  hosts: localhost  
+  
+  tasks:
+    - name: run the statuscode module on valid site
+      statuscode:
+        url: 'https://github.com/'
+      register: statuscode
+
+    - name: run the statuscode module on in-valid site
+      statuscode:
+        url: 'https://github.com/aksjdhfhfjdfjanlfakjsdhf'
+      register: statuscode1
+
+    - name: dump test output valid site
+      debug:
+        msg: '{{ statuscode }}'
+
+    - name: dump test output invalid site
+      debug:
+        msg: '{{ statuscode1 }}'
